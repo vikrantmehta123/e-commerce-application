@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monthly Activity Report</title>
+    <style>
+        /* Inline CSS styles */
+        body { font-family: Arial, sans-serif; }
+        h1, h2 { color: #333; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin-bottom: 10px; background: #f9f9f9; padding: 10px; border: 1px solid #ddd; }
+        .order-id, .order-date, .order-status { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Monthly Activity Report for {{ username }}</h1>
+
+    <p>Dear {{ username }}, here's your activity report for the last month.</p>
+
+    {% if orders | length > 0 %}
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Order ID</th>
+                    <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Date</th>
+                    <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{ order.id }}</td>
+                        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{ order.placed_on }}</td>
+                        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{ order.status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h3>You do not have any purchases in the last month.</h3>
+    {% endif %}
+    
+    <p><strong>Total Expenditure: </strong> {{ total_expenditure }}</p>
+    
+    
+</body>
+</html>
